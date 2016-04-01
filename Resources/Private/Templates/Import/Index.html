@@ -1,0 +1,59 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1>Wordpress Importer</h1>
+    <h2>Categories (Found: <f:count>{categories}</f:count>)</h2>
+    <ul>
+        <f:for each="{categories}" as="category">
+            <li>
+                <strong>[{category.id}] {category.parent} / {category.title}</strong><br/>
+                {category.description}
+            </li>
+        </f:for>
+    </ul>
+
+    <h2>Tags (Found: <f:count>{tags}</f:count>)</h2>
+    <ul>
+        <f:for each="{tags}" as="tag">
+            <li><strong>[{tag.slug}] {tag.title}</strong></li>
+        </f:for>
+    </ul>
+
+    <h2>Pages (Found: <f:count>{pages}</f:count>)</h2>
+    <ul>
+        <f:for each="{pages}" as="page">
+            <li>
+                <strong>[{page.id}] {page.title}</strong><br/>
+                <strong>Status: </strong> {page.status}
+            </li>
+        </f:for>
+    </ul>
+
+    <h2>Posts (Found: <f:count>{posts}</f:count>)</h2>
+    <ul>
+        <f:for each="{posts}" as="post">
+            <li>
+                <strong>[{post.id}] {post.title}</strong><br/>
+                <strong>Status: </strong> {post.status}<br/>
+                <strong>Categories: </strong> <f:for each="{post.categories}" as="category">{category}, </f:for> <br/>
+                <strong>Tags: </strong> <f:for each="{post.tags}" as="tag">{tag},</f:for>
+            </li>
+        </f:for>
+    </ul>
+
+    <h2>Attachments (Found: <f:count>{attachments}</f:count>)</h2>
+    <ul>
+        <f:for each="{attachments}" as="attachment">
+            <li>
+                <strong>[{attachment.id}] {attachment.title}</strong><br/>
+                <f:if condition="{attachment.link}">
+                    <strong>Link: </strong> <a href="{attachment.link}" target="_blank">{attachment.link}</a><br/>
+                    <f:if condition="{attachment.alt}">
+                        <strong>Alt-Text: </strong> {attachment.alt}<br/>
+                    </f:if>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+
+</f:section>

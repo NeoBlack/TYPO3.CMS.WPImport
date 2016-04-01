@@ -1,0 +1,34 @@
+{
+  "name": "neoblack/wpimport",
+  "authors": [
+    {
+      "name": "Frank Naegler",
+      "email": "frank.naegler@typo3.org",
+      "role": "Developer",
+      "homepage": "https://naegler.hamburg"
+    }
+  ],
+  "type": "typo3-cms-extension",
+  "description": "Wordpress Importer for TYPO3",
+  "homepage": "https://github.com/NeoBlack/WPImport",
+  "license": "GPL-2.0+",
+  "keywords": [
+    "typo3",
+    "wordpress",
+    "importer"
+  ],
+  "support": {
+    "issues": "https://github.com/NeoBlack/WPImport/issues"
+  },
+  "require": {
+    "typo3/cms-core": ">=8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TYPO3\\CMS\\Wpimport\\": "Classes/"
+    }
+  },
+  "replace": {
+    "wpimport": "*"
+  }
+}
