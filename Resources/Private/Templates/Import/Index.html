@@ -2,58 +2,96 @@
 
 <f:section name="content">
     <h1>Wordpress Importer</h1>
-    <h2>Categories (Found: <f:count>{categories}</f:count>)</h2>
-    <ul>
-        <f:for each="{categories}" as="category">
-            <li>
-                <strong>[{category.id}] {category.parent} / {category.title}</strong><br/>
-                {category.description}
-            </li>
-        </f:for>
-    </ul>
+    <p class="lead">Import your wordpress site into TYPO3.</p>
 
-    <h2>Tags (Found: <f:count>{tags}</f:count>)</h2>
-    <ul>
-        <f:for each="{tags}" as="tag">
-            <li><strong>[{tag.slug}] {tag.title}</strong></li>
-        </f:for>
-    </ul>
+    <h2>Import data</h2>
+    <pre><code>Import file: {importFile}</code></pre>
 
-    <h2>Pages (Found: <f:count>{pages}</f:count>)</h2>
-    <ul>
-        <f:for each="{pages}" as="page">
-            <li>
-                <strong>[{page.id}] {page.title}</strong><br/>
-                <strong>Status: </strong> {page.status}
-            </li>
-        </f:for>
-    </ul>
+    <div class="row">
+        <div class="col-xs-12 col-lg-3">
+            <h3>Found data summary:</h3>
+            <table class="table table-bordered table-condensed table-hover">
+                <tr>
+                    <th>Type</th>
+                    <th>Count</th>
+                </tr>
+                <tr>
+                    <td>Categories</td>
+                    <td><f:count>{categories}</f:count></td>
+                </tr>
+                <tr>
+                    <td>Tags</td>
+                    <td><f:count>{tags}</f:count></td>
+                </tr>
+                <tr>
+                    <td>Pages</td>
+                    <td><f:count>{pages}</f:count></td>
+                </tr>
+                <tr>
+                    <td>Posts</td>
+                    <td><f:count>{posts}</f:count></td>
+                </tr>
+                <tr>
+                    <td>Attachments</td>
+                    <td><f:count>{attachments}</f:count></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-12 col-lg-9">
+            <h3>Import Wizard:</h3>
+            <p><button class="btn btn-primary t3js-action-start-import">Start Import Wizard</button></p>
+        </div>
+    </div>
 
-    <h2>Posts (Found: <f:count>{posts}</f:count>)</h2>
-    <ul>
-        <f:for each="{posts}" as="post">
-            <li>
-                <strong>[{post.id}] {post.title}</strong><br/>
-                <strong>Status: </strong> {post.status}<br/>
-                <strong>Categories: </strong> <f:for each="{post.categories}" as="category">{category}, </f:for> <br/>
-                <strong>Tags: </strong> <f:for each="{post.tags}" as="tag">{tag},</f:for>
-            </li>
-        </f:for>
-    </ul>
-
-    <h2>Attachments (Found: <f:count>{attachments}</f:count>)</h2>
-    <ul>
-        <f:for each="{attachments}" as="attachment">
-            <li>
-                <strong>[{attachment.id}] {attachment.title}</strong><br/>
-                <f:if condition="{attachment.link}">
-                    <strong>Link: </strong> <a href="{attachment.link}" target="_blank">{attachment.link}</a><br/>
-                    <f:if condition="{attachment.alt}">
-                        <strong>Alt-Text: </strong> {attachment.alt}<br/>
-                    </f:if>
-                </f:if>
-            </li>
-        </f:for>
-    </ul>
-
+    <div id="wizard-content-intro" class="hidden">
+        <h3>Step 1</h3>
+        <p class="lead">Please choose first which content you want to import.</p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="categories"> Categories
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="tags"> Tags
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="pages"> Pages
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="posts"> Posts
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="attachments"> Attachments
+                </label>
+            </div>
+        </form>
+    </div>
+    <div id="wizard-content-task-categories" class="hidden">
+        <h3>Import Categories</h3>
+        <p class="t3js-wait">Please wait...</p>
+    </div>
+    <div id="wizard-content-task-attachments" class="hidden">
+        <h3>Import Attachments</h3>
+        <p class="t3js-wait">Please wait...</p>
+    </div>
+    <div id="wizard-content-task-pages" class="hidden">
+        <h3>Import Pages</h3>
+        <p class="t3js-wait">Please wait...</p>
+    </div>
+    <div id="wizard-content-task-tags" class="hidden">
+        <h3>Import Tags</h3>
+        <p class="t3js-wait">Please wait...</p>
+    </div>
+    <div id="wizard-content-task-posts" class="hidden">
+        <h3>Import Posts</h3>
+        <p class="t3js-wait">Please wait...</p>
+    </div>
 </f:section>

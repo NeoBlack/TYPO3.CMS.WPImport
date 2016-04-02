@@ -14,7 +14,9 @@ namespace TYPO3\CMS\Wpimport\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Wpimport\Repository\AttachmentRepository;
 use TYPO3\CMS\Wpimport\Repository\CategoryRepository;
@@ -37,9 +39,14 @@ class ImportController extends ActionController
      */
     public function indexAction()
     {
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Wpimport/ImportWizard');
+
         $importFile = GeneralUtility::getFileAbsFileName(
             GeneralUtility::getFileAbsFileName('EXT:wpimport/Resources/Private/Xml/wp_export.xml')
         );
+        $this->view->assign('importFile', $importFile);
+
         $xmlContent = file_get_contents($importFile);
         $previousValueOfEntityLoader = libxml_disable_entity_loader(true);
         $rootXmlNode = simplexml_load_string($xmlContent, 'SimpleXMLElement', LIBXML_NOWARNING);
