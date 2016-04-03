@@ -9,7 +9,7 @@ if (TYPO3_MODE === 'BE') {
         'wpimport',
         'top',
         array(
-            'Import' => 'index'
+            'Import' => 'index,import'
         ),
         array(
             'access' => 'admin',

@@ -8,90 +8,46 @@
     <pre><code>Import file: {importFile}</code></pre>
 
     <div class="row">
-        <div class="col-xs-12 col-lg-3">
+        <div class="col-xs-12 col-lg-6">
             <h3>Found data summary:</h3>
-            <table class="table table-bordered table-condensed table-hover">
+            <table class="table table-bordered table-condensed">
                 <tr>
                     <th>Type</th>
                     <th>Count</th>
+                    <th>Imported</th>
+                    <th>Action</th>
                 </tr>
-                <tr>
+                <tr class="{f:if(condition: importCategories, then: '', else: 'success')}">
                     <td>Categories</td>
                     <td><f:count>{categories}</f:count></td>
+                    <td>{importedCategories}</td>
+                    <td><f:link.action action="import" arguments="{type: 'categories'}" class="btn btn-primary {f:if(condition: importCategories, then: '', else: 'disabled')}">Start Import</f:link.action></td>
                 </tr>
-                <tr>
-                    <td>Tags</td>
-                    <td><f:count>{tags}</f:count></td>
-                </tr>
-                <tr>
-                    <td>Pages</td>
-                    <td><f:count>{pages}</f:count></td>
-                </tr>
-                <tr>
-                    <td>Posts</td>
-                    <td><f:count>{posts}</f:count></td>
-                </tr>
-                <tr>
+                <tr class="{f:if(condition: importAttachments, then: '', else: 'success')}">
                     <td>Attachments</td>
                     <td><f:count>{attachments}</f:count></td>
+                    <td>{importedAttachments}</td>
+                    <td><f:link.action action="import" arguments="{type: 'attachments'}" class="btn btn-primary {f:if(condition: importAttachments, then: '', else: 'disabled')}">Start Import</f:link.action></td>
+                </tr>
+                <tr class="{f:if(condition: importPages, then: '', else: 'success')}">
+                    <td>Pages</td>
+                    <td><f:count>{pages}</f:count></td>
+                    <td>{importedPages}</td>
+                    <td><f:link.action action="import" arguments="{type: 'pages'}" class="btn btn-primary {f:if(condition: importPages, then: '', else: 'disabled')}">Start Import</f:link.action></td>
+                </tr>
+                <tr class="disabled danger">
+                    <td>Tags (not supported yet)</td>
+                    <td><f:count>{tags}</f:count></td>
+                    <td>0</td>
+                    <td><f:link.action action="import" arguments="{type: 'tags'}" class="btn btn-primary disabled">Start Import</f:link.action></td>
+                </tr>
+                <tr class="disabled danger">
+                    <td>Posts (not supported yet)</td>
+                    <td><f:count>{posts}</f:count></td>
+                    <td>0</td>
+                    <td><f:link.action action="import" arguments="{type: 'posts'}" class="btn btn-primary disabled">Start Import</f:link.action></td>
                 </tr>
             </table>
         </div>
-        <div class="col-xs-12 col-lg-9">
-            <h3>Import Wizard:</h3>
-            <p><button class="btn btn-primary t3js-action-start-import">Start Import Wizard</button></p>
-        </div>
-    </div>
-
-    <div id="wizard-content-intro" class="hidden">
-        <h3>Step 1</h3>
-        <p class="lead">Please choose first which content you want to import.</p>
-        <form>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="categories"> Categories
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="tags"> Tags
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="pages"> Pages
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="posts"> Posts
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="attachments"> Attachments
-                </label>
-            </div>
-        </form>
-    </div>
-    <div id="wizard-content-task-categories" class="hidden">
-        <h3>Import Categories</h3>
-        <p class="t3js-wait">Please wait...</p>
-    </div>
-    <div id="wizard-content-task-attachments" class="hidden">
-        <h3>Import Attachments</h3>
-        <p class="t3js-wait">Please wait...</p>
-    </div>
-    <div id="wizard-content-task-pages" class="hidden">
-        <h3>Import Pages</h3>
-        <p class="t3js-wait">Please wait...</p>
-    </div>
-    <div id="wizard-content-task-tags" class="hidden">
-        <h3>Import Tags</h3>
-        <p class="t3js-wait">Please wait...</p>
-    </div>
-    <div id="wizard-content-task-posts" class="hidden">
-        <h3>Import Posts</h3>
-        <p class="t3js-wait">Please wait...</p>
     </div>
 </f:section>

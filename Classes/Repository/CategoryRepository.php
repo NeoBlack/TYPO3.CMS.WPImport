@@ -31,4 +31,20 @@ class CategoryRepository extends AbstractRepository
      * @var string
      */
     protected $modelClass = Category::class;
+
+    /**
+     * @param $nicename
+     *
+     * @return mixed
+     */
+    public function findByNicename($nicename)
+    {
+        /** @var Category $category */
+        foreach ($this->objectStorage as $category) {
+            if ($nicename === $category->getNicename()) {
+                return $category;
+            }
+        }
+        return false;
+    }
 }
